@@ -5,7 +5,10 @@ const ENDPOINT_PATH = "http://www.apibagual.codigobagual.cl";
 
 export default {
   register(email_user, password_user) {
-    const data = { email_user, password_user };
+    const data = qs.stringify(
+        { email_user: `${email_user}`,
+        password_user: `${password_user}`
+     });
 
     var config = {
         method: 'post',
