@@ -1,9 +1,7 @@
 import axios from "axios";
 import qs from "qs";
 import Cookies from "js-cookie";
-
-const NOCORS = "https://guarded-plateau-89958.herokuapp.com"
-const ENDPOINT_PATH = "http://www.apibagual.codigobagual.cl";
+import { environment } from "@/enviroments/enviroments";
 
 export default {
   setUserLogged(userLoged){    
@@ -20,10 +18,10 @@ export default {
 
     var config = {
         method: 'post',
-        url: `${NOCORS}/${ENDPOINT_PATH}/users?register=true&suffix=user`,
+        url: `${environment.API_URL}/users?register=true&suffix=user`,
         headers: {      
           'Access-Control-Allow-Origin': '*',     
-          'apikey': 'M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7', 
+          'apikey': `${environment.API_KEY}`, 
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         data : data
@@ -39,10 +37,9 @@ export default {
     });
     var config = {
       method: 'post',
-      url: `${NOCORS}/${ENDPOINT_PATH}/users?login=true&suffix=user`,
-      headers: { 
-        'Authorization': 'M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7', 
-        'apikey': 'M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7', 
+      url: `${environment.API_URL}/users?login=true&suffix=user`,
+      headers: {         
+        'apikey': `${environment.API_KEY}`, 
         'Content-Type': 'application/x-www-form-urlencoded'
       },
       data : data
