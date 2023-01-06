@@ -49,7 +49,7 @@ var requestOptions = {
   redirect: 'follow'
 };
 
-fetch("www.apibagual.codigobagual.cl/users?register=true&suffix=user", requestOptions)
+fetch("https?://www.apibagual.codigobagual.cl/users?register=true&suffix=user", requestOptions)
   .then(response => response.text())
   .then(result => console.log(result))
   .catch(error => console.log('error', error));
