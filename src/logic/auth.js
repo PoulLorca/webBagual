@@ -8,7 +8,7 @@ export default {
     const data = qs.stringify(
         { email_user: `${email_user}`,
         password_user: `${password_user}`
-     });
+     });     
 
     var config = {
         method: 'post',
@@ -29,34 +29,29 @@ export default {
       return(error);
     });
   }
-    };*/
+};*/
 
 export default{
   register(){
-    var axios = require('axios');
-    var qs = require('qs');
-    var data = qs.stringify({
-      'email_user': 'test@test.com',
-      'password_user': 'test' 
-    });
-    var config = {
-      method: 'post',
-      url: 'http://www.apibagual.codigobagual.cl/users?register=true&suffix=user',
-      headers: { 
-        'Access-Control-Allow-Origin' : '*',        
-        'apikey': 'M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7', 
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
-      data : data
-    };
-    
-    axios(config)
-    .then(function (response) {
-      console.log(JSON.stringify(response.data));
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-    
+var myHeaders = new Headers();
+myHeaders.append("Authorization", "M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7");
+myHeaders.append("apikey", "M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7");
+myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+
+var urlencoded = new URLSearchParams();
+urlencoded.append("email_user", "usuario@correo.com");
+urlencoded.append("password_user", "123456");
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: urlencoded,
+  redirect: 'follow'
+};
+
+fetch("www.apibagual.codigobagual.cl/users?register=true&suffix=user", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
 }
 }
