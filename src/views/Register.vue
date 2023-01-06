@@ -2,6 +2,16 @@
   <div class="register">
     <h1 class="title">Sign Up</h1>
     <form action class="form" @submit.prevent="register">
+      <label class="form-label" for="#name">Name:</label>
+      <input
+        v-model="name"
+        class="form-input"
+        type="name"
+        id="name"
+        required
+        placeholder="Name"
+      >
+
       <label class="form-label" for="#email">Email:</label>
       <input
         v-model="email"
@@ -37,6 +47,7 @@
 import auth from "@/logic/auth";
 export default {
   data: () => ({
+    name:"",
     email: "",
     password: "",
     passwordRepeat: "",
@@ -45,8 +56,9 @@ export default {
   methods: {
     async register() {
       try {
-        await auth.register(this.email, this.password);
-        this.$router.push("/")
+      await auth.register(this.name,this.email, this.password);      
+      alert('Registrado correctamente!');
+      this.$router.push("/login")
       } catch (error) {
         console.log(error);
       }

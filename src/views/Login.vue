@@ -1,41 +1,60 @@
 <template>
-    <div class="login">
-      <h1 class="title">Login in the page</h1>
-      <form action class="form" @submit.prevent="login">
-        <label class="form-label" for="#email">Email:</label>
-        <input
-          v-model="email"
-          class="form-input"
-          type="email"
-          id="email"
-          required
-          placeholder="Email"
-        >
-        <label class="form-label" for="#password">Password:</label>
-        <input
-          v-model="password"
-          class="form-input"
-          type="password"
-          id="password"
-          placeholder="Password"
-        >
-        <p v-if="error" class="error">Has introducido mal el email o la contraseña.</p>
-        <input class="form-submit" type="submit" value="Login">
-      </form>
-    </div>
-  </template>
+  <div class="login">
+    <h1 class="title">Login in the page</h1>
+    <form action class="form" @submit.prevent="login">
+      <label class="form-label" for="#email">Email:</label>
+      <input
+        v-model="email"
+        class="form-input"
+        type="email"
+        id="email"
+        required
+        placeholder="Email"
+      >
+      <label class="form-label" for="#password">Password:</label>
+      <input
+        v-model="password"
+        class="form-input"
+        type="password"
+        id="password"
+        placeholder="Password"
+      >
+      <p v-if="error" class="error">Has introducido mal el email o la contraseña.</p>
+      <input class="form-submit" type="submit" value="Login">
+    </form>
+    <p class="msg">¿No tienes cuenta?
+      <router-link to="/register">Regístrate</router-link>
+    </p>
+  </div>
+</template>
 
 <script>
+import auth from "@/logic/auth";
 export default {
-    data: () => ({
+  data: () => ({
     email: "",
     password: "",
     error: false
   }),
   methods: {
-    login() {
-      console.log(this.email);
-      console.log(this.password);
+    async login() {
+      try {
+
+        const response = await auth.login(this.email, this.password);                
+        const data=response.data.results[0];        
+        const user = {
+          name_user : data.name_user,
+          email_user : data.email_user,
+          token_user : data.token_user
+        };
+
+        auth.setUserLogged(user);
+
+        this.$router.push("/home");
+
+      } catch (error) {
+        this.error = true;
+      }
     }
   }
 };
@@ -91,6 +110,15 @@ export default {
 }
  .form-submit:hover {
 	 background: #0b9185;
+}
+
+.error {
+  margin: 1rem 0 0;
+  color: #ff4a96;
+}
+.msg {
+  margin-top: 3rem;
+  text-align: center;
 }
  
 </style>
