@@ -41,7 +41,7 @@ export default{
     });
     var config = {
       method: 'post',
-      url: 'www.apibagual.codigobagual.cl/users?register=true&suffix=user',
+      url: 'http://www.apibagual.codigobagual.cl/users?register=true&suffix=user',
       headers: { 
         'Authorization': 'M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7', 
         'apikey': 'M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7', 
