@@ -43,7 +43,7 @@ export default{
       method: 'post',
       url: 'http://www.apibagual.codigobagual.cl/users?register=true&suffix=user',
       headers: { 
-        'Authorization': 'M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7', 
+        'Access-Control-Allow-Origin' : '*',        
         'apikey': 'M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7', 
         'Content-Type': 'application/x-www-form-urlencoded'
       },
