@@ -13,8 +13,7 @@ export default {
     var config = {
         method: 'post',
         url: `${ENDPOINT_PATH}/users?register=true&suffix=user`,
-        headers: { 
-          'Authorization': 'M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7', 
+        headers: {           
           'apikey': 'M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7', 
           'Content-Type': 'application/x-www-form-urlencoded'
         },
