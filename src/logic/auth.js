@@ -12,7 +12,7 @@ export default {
 
     var config = {
         method: 'post',
-        url: `${ENDPOINT_PATH}/users?register=true&suffix=user`,
+        url: `https://guarded-plateau-89958.herokuapp.com/${ENDPOINT_PATH}/users?register=true&suffix=user`,
         headers: {      
           'Access-Control-Allow-Origin': '*',     
           'apikey': 'M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7', 
