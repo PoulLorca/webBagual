@@ -36,8 +36,8 @@ export default{
     var axios = require('axios');
     var qs = require('qs');
     var data = qs.stringify({
-      'email_user': 'usuario@correo.com',
-      'password_user': '123456' 
+      'email_user': 'test@test.com',
+      'password_user': 'test' 
     });
     var config = {
       method: 'post',
