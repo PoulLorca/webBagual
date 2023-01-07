@@ -73,7 +73,8 @@ export default {
           Swal.fire('Eliminado con éxito!')
 
           //Reload page
-          location.reload();
+          //location.reload();
+          this.$router.push('/address');    
         }else{
           Swal.fire('Error al borrar!')
         }        
