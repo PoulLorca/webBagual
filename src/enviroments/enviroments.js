@@ -4,7 +4,7 @@
 
 export const environment = {    
   API_URL : "https://guarded-plateau-89958.herokuapp.com/http://www.apibagual.codigobagual.cl",
-  API_KEY : "M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7"
+  API_KEY : "M8kPAPvGZR2U9H35ZUxRW2S2xHD9J7"  
 };
 
 /*

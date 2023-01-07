@@ -45,6 +45,8 @@
   
 <script>
 import auth from "@/logic/auth";
+import Swal from "sweetalert2";
+
 export default {
   data: () => ({
     name:"",
@@ -56,9 +58,16 @@ export default {
   methods: {
     async register() {
       try {
-      await auth.register(this.name,this.email, this.password);      
-      alert('Registrado correctamente!');
-      this.$router.push("/login")
+      const response = await auth.register(this.name,this.email, this.password);      
+      const data = response.data.status;
+
+      if(data == 200){
+        Swal.fire('Registrado correctamente!')
+        this.$router.push("/login")
+      }else{
+        Swal.fire('Error al guardar!')
+      } 
+
       } catch (error) {
         console.log(error);
       }

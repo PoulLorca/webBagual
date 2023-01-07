@@ -2,7 +2,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 import Register from '../views/Register.vue'
 import Home from '../views/Home.vue'
-import Address from '../views/Address.vue'
+import Address from '../views/Address/Address.vue'
+import newAddress from '../views/Address/newAddress.vue'
+import editAddress from '../views/Address/editAddress.vue'
 
 const routes = [
   {
@@ -20,6 +22,14 @@ const routes = [
   {
     path: '/address',
     component: Address
+  },
+  {
+    path: '/newaddress',
+    component: newAddress
+  },
+  {
+    path:'/editaddress/:id',
+    component: editAddress
   },
   {
     path: '/about',

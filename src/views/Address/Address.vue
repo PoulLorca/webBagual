@@ -1,7 +1,10 @@
 <template>
     <h1>Direcciones</h1>        
 
-    <a href="">Nueva dirección</a>
+    <nav>
+      <router-link to="/home">Atrás</router-link> | 
+    <router-link to="/newaddress">Nueva Direccion</router-link>
+  </nav>
 
     <br>
     <br>
@@ -17,9 +20,9 @@
                 <th>Acciones</th>
             </tr>
         <tr
-        v-for="direccion in info"
+        v-for="direccion, index in info"
         class="direccion">            
-                <td>{{ direccion.id_direction }}</td>
+                <td>{{ index + 1 }}</td>
                 <td>{{ direccion.name_region }}</td>
                 <td>{{ direccion.name_city }}</td>
                 <td>{{ direccion.name_commune }}</td>    
@@ -35,6 +38,8 @@
 
 <script>
 import addresssrvice from '@/logic/addresssrvice';
+import Swal from 'sweetalert2';
+
 export default {
   data: () => ({
     info : null
@@ -54,21 +59,27 @@ export default {
       } catch (error) {
         console.log(error)
       }
-    },       
-    
+    }, 
+    edit: async function(id){
+      this.$router.push(`/editaddress/${id}`);      
+    } ,         
     erase: async function(id){        
       try {
+        //Execute delete
         const response = await addresssrvice.delete(id);                
-        const data=response.data        
-        
-        location.reload();
+        const data=response.data.status                
+
+        if(data == 200){
+          Swal.fire('Eliminado con éxito!')
+
+          //Reload page
+          location.reload();
+        }else{
+          Swal.fire('Error al borrar!')
+        }        
       } catch (error) {
         console.log(error)
       }
-    },
-
-    edit: function(id){
-        console.log(id);
     }
   }  
 };
