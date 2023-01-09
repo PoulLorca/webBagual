@@ -48,6 +48,7 @@
         type="text"
         id="deatil"
         placeholder="Detalle"
+        required
       >
 
       <br>

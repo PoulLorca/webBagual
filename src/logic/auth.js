@@ -1,6 +1,7 @@
 import axios from "axios";
 import qs from "qs";
 import Cookies from "js-cookie";
+import moment from 'moment';
 import { environment } from "@/enviroments/enviroments";
 
 export default {
@@ -11,11 +12,14 @@ export default {
     return Cookies.get("userLoged");
   },
   register(name_user,email_user, password_user) {
+    let date_created_user = moment(new Date()).format("YYYY-MM-DD");
+
     const data = qs.stringify(
         { name_user:`${name_user}`,
           email_user: `${email_user}`,
-        password_user: `${password_user}`
-     });     
+          password_user: `${password_user}`,
+          date_created_user: `${date_created_user}`
+        });     
 
     var config = {
         method: 'post',
