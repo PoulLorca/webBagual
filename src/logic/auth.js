@@ -10,9 +10,10 @@ export default {
   getUserLogged(){
     return Cookies.get("userLoged");
   },
-  register(email_user, password_user) {
+  register(name_user,email_user, password_user) {
     const data = qs.stringify(
-        { email_user: `${email_user}`,
+        { name_user:`${name_user}`,
+          email_user: `${email_user}`,
         password_user: `${password_user}`
      });     
 
