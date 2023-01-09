@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Address from '../views/Address/Address.vue'
 import newAddress from '../views/Address/newAddress.vue'
 import editAddress from '../views/Address/editAddress.vue'
+import Notfound from '../components/Notfound.vue'
 
 const routes = [
   {
@@ -40,6 +41,11 @@ const routes = [
     component: function () {
       return import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
     }
+  },
+  {
+    path:'/:pathMatch(.*)*',
+    name: 'NotFound',
+    component:Notfound
   }
 ]
 
