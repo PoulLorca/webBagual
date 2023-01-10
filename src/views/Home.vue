@@ -2,7 +2,7 @@
     <div class="home">
       <navigation/>
       <h1>Home</h1>
-      <p v-if="userLogged">User loggued: {{userLogged.name_user}}</p>
+      <!--<p v-if="userLogged">User loggued: {{userLogged.name_user}}</p>-->
     </div>
   </template>
   
@@ -16,7 +16,7 @@
     },
     computed: {
       userLogged() {        
-        return JSON.parse(auth.getUserLogged());
+        //return JSON.parse(auth.getUserLogged());
       }
     }
   };

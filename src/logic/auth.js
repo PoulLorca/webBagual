@@ -11,6 +11,9 @@ export default {
   getUserLogged(){
     return Cookies.get("userLoged");
   },
+  logout(){    
+    Cookies.remove('userLoged')
+  },
   register(name_user,email_user, password_user) {
     let date_created_user = moment(new Date()).format("YYYY-MM-DD");
 
@@ -34,7 +37,6 @@ export default {
 
     return axios(config)    
   },
-
   login(email_user,password_user){
     var data = qs.stringify({
       'email_user': `${email_user}`,

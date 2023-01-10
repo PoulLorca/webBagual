@@ -19,7 +19,7 @@
         type="email"
         id="email"
         required
-        placeholder="Email"
+        placeholder="Email"        
       >
       <label class="form-label" for="#password">Password:</label>
       <input
@@ -28,6 +28,7 @@
         type="password"
         id="password"
         placeholder="Password"
+        required
       >
       <label class="form-label" for="#password-repeat">Repite la contraeña:</label>
       <input
@@ -36,6 +37,7 @@
         type="password"
         id="password-repeat"
         placeholder="Password"
+        required
       >
       <input class="form-submit" type="submit" value="Sign Up">
     </form>

@@ -1,6 +1,7 @@
 <template>
   <div class="login">
     <h1 class="title">Login in the page</h1>
+    <router-link to="/home">Regresar</router-link>
     <form action class="form" @submit.prevent="login">
       <label class="form-label" for="#email">Email:</label>
       <input
@@ -41,11 +42,13 @@ export default {
       try {
 
         const response = await auth.login(this.email, this.password);                
-        const data=response.data.results[0];        
+        const data=response.data.results[0];            
         const user = {
           name_user : data.name_user,
           email_user : data.email_user,
-          token_user : data.token_user
+          token_user : data.token_user,
+          id_rol_user: data.id_rol_user,
+          id_direction_user:data.id_direction_user
         };
 
         auth.setUserLogged(user);

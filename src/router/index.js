@@ -6,10 +6,12 @@ import Address from '../views/Address/Address.vue'
 import newAddress from '../views/Address/newAddress.vue'
 import editAddress from '../views/Address/editAddress.vue'
 import Notfound from '../components/Notfound.vue'
+import Category from '../views/Category.vue'
+import Profile from  '../views/Profile.vue'
 
 const routes = [
   {
-    path: '/',    
+    path: '/login',    
     component: Login
   },
   { 
@@ -31,6 +33,14 @@ const routes = [
   {
     path:'/editaddress/:id',
     component: editAddress
+  },
+  {
+    path:'/category/:id',
+    component: Category
+  },
+  {
+    path:'/profile',
+    component: Profile
   },
   {
     path: '/about',
