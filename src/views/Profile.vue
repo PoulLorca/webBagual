@@ -15,7 +15,8 @@
 </div>
 
 <br>
-<h2><router-link to="/shops">Mis compras</router-link></h2>
+<h2 class="btnshops" v-on:click="shops(profile.id_user)">Mis compras</h2>
+<h2><router-link to="/home">Regresar</router-link></h2>
 
 </template>
 
@@ -51,6 +52,9 @@ export default {
         }catch(error){
             console.log(error);
         }                
+    },
+    shops: async function(id){
+      this.$router.push(`/shops/${id}`);      
     }
 }
 
@@ -71,6 +75,10 @@ export default {
 }
 .userName{
     text-transform: capitalize;
+}
+
+.btnshops{
+    cursor: pointer;
 }
 
 </style>

@@ -44,6 +44,7 @@ export default {
         const response = await auth.login(this.email, this.password);                
         const data=response.data.results[0];            
         const user = {
+          id_user:data.id_user,
           name_user : data.name_user,
           email_user : data.email_user,
           token_user : data.token_user,

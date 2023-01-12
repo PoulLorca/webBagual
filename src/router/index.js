@@ -8,8 +8,14 @@ import editAddress from '../views/Address/editAddress.vue'
 import Notfound from '../components/Notfound.vue'
 import Category from '../views/Category.vue'
 import Profile from  '../views/Profile.vue'
+import Shops from '../views/Shops/Shops.vue'
+import detailShop from '../views/Shops/detailShop.vue'
 
 const routes = [
+  {
+    path:'/',
+    component:Home
+  },
   {
     path: '/login',    
     component: Login
@@ -41,6 +47,14 @@ const routes = [
   {
     path:'/profile',
     component: Profile
+  },
+  {
+    path:'/shops/:id',
+    component: Shops
+  },
+  {
+    path:'/detailshop/:id',
+    component:detailShop
   },
   {
     path: '/about',
