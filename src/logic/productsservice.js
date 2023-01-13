@@ -5,6 +5,17 @@ import auth from "./auth";
 
 export default {
 
+  getAllProducts(){
+    var config = {
+      method: 'get',
+      url: `${environment.API_URL}/relations?select=*&rel=products,categories,images&type=product,category,image`,          
+      headers: {     
+        'apikey': `${environment.API_KEY}`
+      }
+    };
+    
+    return axios(config)
+  },
     getProducts(id){        
         var config = {
           method: 'get',

@@ -10,6 +10,7 @@ import Category from '../views/Category.vue'
 import Profile from  '../views/Profile.vue'
 import Shops from '../views/Shops/Shops.vue'
 import detailShop from '../views/Shops/detailShop.vue'
+import Product from '../views/Products/Product.vue'
 
 const routes = [
   {
@@ -55,6 +56,10 @@ const routes = [
   {
     path:'/detailshop/:id',
     component:detailShop
+  },
+  {
+    path:'/productdetail/:id',
+    component:Product
   },
   {
     path: '/about',

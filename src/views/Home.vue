@@ -1,23 +1,29 @@
 <template>
     <div class="home">
-      <navigation/>
-      <h1>Home</h1>
-      <!--<p v-if="userLogged">User loggued: {{userLogged.name_user}}</p>-->
+      <navigation></navigation>      
+      <br>
+      <products></products>      
     </div>
   </template>
   
-  <script>
-  import Navigation from "../components/Navigation";
-  import auth from "@/logic/auth";
+  <script>  
+  import { defineAsyncComponent } from "vue";    
+
+  const Navigation = defineAsyncComponent(  
+  () => import("../components/Navigation"),
+);
+
+const Products = defineAsyncComponent(
+  () => import("../components/Products"),  
+);
+
   export default {
     name: "Home",
     components: {
-      navigation: Navigation
+      Navigation,
+      Products
     },
-    computed: {
-      userLogged() {        
-        //return JSON.parse(auth.getUserLogged());
-      }
+    computed: {      
     }
   };
   </script>

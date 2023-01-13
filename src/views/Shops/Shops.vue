@@ -71,11 +71,8 @@ table, th, td {
   border:1px solid black;
 }
 
-.editButton:hover{
+.detailButton:hover{
     cursor:pointer;
 } 
 
-.deleteButton:hover{
-    cursor:pointer;
-} 
 </style>

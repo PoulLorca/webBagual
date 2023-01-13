@@ -17,7 +17,7 @@
   <div class="side-menu" :class="{active: activeMenu}">
     <button v-on:click="toggleMenu()">Close</button>
     <ul>
-      <li><a routerLink="home">All</a></li>
+      <li><router-link to="/home">All</router-link></li>
       
       <li v-for="item in categories">
         <a v-on:click="category(item.id_category)">{{ item.name_category }}</a>        
@@ -34,7 +34,7 @@
       </a>
       <ul>
         
-        <li><a routerLinkActive="active" routerLink="home">All</a></li>
+        <li><router-link to="/home">All</router-link></li>
         <li v-for="item in categories">
           <a routerLinkActive="active" v-on:click="category(item.id_category)">{{ item.name_category }}</a>          
         </li>
@@ -66,17 +66,19 @@
 import categoriesservice from '../logic/categoriesservice'
 import auth from '@/logic/auth';
 
+import emmiter from '@/enviroments/emmiter';
+
 export default {
     name:"Navagation",    
     data: () => ({
         activeMenu : false,
         counter : 0,        
         categories: null,
-        profile: null
+        profile: null,        
   }),
   async created(){
     await this.getCategories();
-    await this.getUser();
+    await this.getUser();          
   },
   methods:{
     getCategories: async function(){
@@ -98,7 +100,7 @@ export default {
         }
         
       }catch(error){
-        console.log(error);
+        console.log('No session loaded');
       }
     },
     toggleMenu: function(){
@@ -120,7 +122,12 @@ export default {
     },
     login: function(){
       this.$router.push("/login")
-    }
+    },        
+  },
+  mounted() {     
+    emmiter.on('addonetocart', () => {      
+      this.counter += 1;
+    });
   }
       
 }
