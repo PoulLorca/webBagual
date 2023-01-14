@@ -4,7 +4,10 @@
 <img  src="../assets/svg/jedi_icon.svg" alt="jedi_icon">
 </div>
 <div class="infoText">
-    <h2 v-if="profile.id_rol_user == 1">Rol: <span class="rol">Administrador </span></h2>
+    <div v-if="profile.id_rol_user == 1">
+    <h2 >Rol: <span class="rol">Administrador </span></h2>
+    <a href="https://unique-mooncake-cb48e0.netlify.app">IR AL CMS</a>
+</div>
     <h2>Nombre: <span class="userName">{{ profile.name_user }} </span></h2>    
     <h2>Email: <span>{{ profile.email_user }} </span></h2>    
 
