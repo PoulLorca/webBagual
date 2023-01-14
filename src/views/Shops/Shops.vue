@@ -54,7 +54,7 @@ export default {
         const response = await shopsservice.getShops(id);                
         const data=response.data
         
-        this.info=data.results;        
+        this.info=data.results;                
       } catch (error) {
         console.log(error)
       }

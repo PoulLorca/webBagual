@@ -8,7 +8,7 @@
       <p>{{product.title_product}}</p>
       <p class="category">{{product?.name_category}}</p>      
       <a v-on:click="productDetail(product.id_product)">See detail</a>      
-      <button  @click="addone()">Add cart</button>
+      <button  @click="addone(product)">Add cart</button>
     </div>
 </div>
 </template>
@@ -46,8 +46,8 @@ export default {
     productDetail: async function(id){
       this.$router.push(`/productdetail/${id}`);      
     },        
-    addone: function(){      
-      emmiter.emit("addonetocart", 1);      
+    addone: function(product){      
+      emmiter.emit("addonetocart", product);      
     }
   }
 }

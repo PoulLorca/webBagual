@@ -7,10 +7,12 @@
     <a href="">
       <img src="../assets/svg/logo_yard_sale.svg" alt="logo">
     </a>
-    <div class="cart">
-      <a href="">
+    <div class="cart" v-if="profile">
+      
+        <router-link to="/myCart">
         <img src="../assets/svg/icon_shopping_cart.svg" alt="logo">
-      </a>
+      </router-link>
+      
       <span class="counter">{{ counter }}</span>
     </div>
   </div>
@@ -42,8 +44,7 @@
       </ul>
     </nav>
     
-    <div class="info">
-        
+    <div class="info">      
       <div class="account">
         <button v-if="!profile" v-on:click="login()">Login</button>
         <template v-else>
@@ -51,10 +52,10 @@
           <button v-on:click="logout()">Logout</button>
         </template> 
       </div>      
-      <div class="cart">
-        <a href="">
+      <div v-if="profile" class="cart">
+        <router-link to="/myCart">
           <img src="../assets/svg/icon_shopping_cart.svg" alt="logo">
-        </a>
+        </router-link>
         <span class="counter">{{ counter }}</span>
       </div>
     </div>
@@ -65,6 +66,8 @@
 <script>
 import categoriesservice from '../logic/categoriesservice'
 import auth from '@/logic/auth';
+import cart from '@/logic/cart';
+import Swal from 'sweetalert2';
 
 import emmiter from '@/enviroments/emmiter';
 
@@ -74,11 +77,12 @@ export default {
         activeMenu : false,
         counter : 0,        
         categories: null,
-        profile: null,        
+        profile: null,                
   }),
   async created(){
     await this.getCategories();
-    await this.getUser();          
+    await this.getUser();             
+    this.checkCart(); 
   },
   methods:{
     getCategories: async function(){
@@ -125,10 +129,23 @@ export default {
     login: function(){
       this.$router.push("/login")
     },        
+    checkCart: function(){
+      try{
+        const inCart = JSON.parse(cart.getCart());            
+        this.counter=Object.keys(inCart).length/17;      
+      }catch(error){
+
+      }
+    }
   },
   mounted() {     
-    emmiter.on('addonetocart', () => {      
+    emmiter.on('addonetocart', (product) => {            
+      cart.setCart(product);      
+      if(this.counter < 1){
       this.counter += 1;
+      }else{
+        Swal.fire('You can only buy one by one in test mode');
+      }
     });
   }
       

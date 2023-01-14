@@ -11,6 +11,7 @@ import Profile from  '../views/Profile.vue'
 import Shops from '../views/Shops/Shops.vue'
 import detailShop from '../views/Shops/detailShop.vue'
 import Product from '../views/Products/Product.vue'
+import MyCart from '../views/MyCart.vue'
 
 const routes = [
   {
@@ -60,6 +61,10 @@ const routes = [
   {
     path:'/productdetail/:id',
     component:Product
+  },
+  {
+    path:'/myCart',
+    component:MyCart
   },
   {
     path: '/about',
