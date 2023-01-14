@@ -27,8 +27,15 @@ export default {
   },
   methods:{
     async getProducts(){
-      try {        
-        const response = await productsservice.getAllProducts();                
+      try {  
+        var response;      
+      if(this.$route.params.id){
+        let id = this.$route.params.id
+        response = await productsservice.getAllProductsByCategory(id);                  
+      }else{
+        response = await productsservice.getAllProducts();                
+      }
+
         const data=response.data
         
         this.products=data.results;                

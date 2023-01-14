@@ -36,7 +36,7 @@
         
         <li><router-link to="/home">All</router-link></li>
         <li v-for="item in categories">
-          <a routerLinkActive="active" v-on:click="category(item.id_category)">{{ item.name_category }}</a>          
+          <a v-on:click="category(item.id_category)">{{ item.name_category }}</a>          
         </li>
         
       </ul>
@@ -107,7 +107,9 @@ export default {
     this.activeMenu = !this.activeMenu;
     },
     category: function(id){        
-        this.$router.push(`/category/${id}`);
+        this.$router
+        .push(`/category/${id}`)
+        .then(()=>{this.$router.go()})                       
     },
 
     logout: async function(){      

@@ -28,6 +28,18 @@ export default {
         return axios(config)
         
     },
+    getAllProductsByCategory(id){        
+      var config = {
+        method: 'get',
+        url: `${environment.API_URL}/relations?rel=products,images,categories&type=product,image,category&select=*&linkTo=id_category_product&equalTo=${id}`,          
+        headers: {     
+          'apikey': `${environment.API_KEY}`
+        }
+      };
+      
+      return axios(config)
+      
+  },
     getProduct(id){        
       var config = {
         method: 'get',
