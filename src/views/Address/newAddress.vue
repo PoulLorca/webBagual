@@ -69,11 +69,13 @@ import regionservice from "@/logic/regionservice";
 import cityservice from "@/logic/cityservice";
 import communeservice from "@/logic/communeservice";
 import addressservice from "@/logic/addresssrvice"
+import auth from "@/logic/auth"
 
 import Swal from 'sweetalert2'
 
 export default {
-  data: () => ({
+  data: () => ({    
+    profile:null,
     regions: null,
     cities: null,
     communes: null,
@@ -87,6 +89,7 @@ export default {
     await this.getRegion()
     await this.getCity()
     await this.getCommune()      
+    await this.getUser()
   },
   methods: {
     getRegion : async function() {
@@ -125,17 +128,32 @@ export default {
     newAddress : async function(){
      try {        
       const response = await addressservice.register(this.selregion, this.selcity, this.selcommune, this.detail);            
-      const data = response.data.status;
+      const data = response.data;
 
-      if(data == 200){
-        Swal.fire('Guardado con éxito!')
+      if(data.status == 200){
+        let newId=data.results.lastId;
+        const updateDir = await auth.updateDefaultDirection(newId,this.profile.id_user ,this.profile.token_user);
+        const dataDir = updateDir.data
+        
+        if(dataDir.status == 200){
+          await auth.logout();
 
-        this.$router.push("/address");
+          Swal.fire('Guardado con éxito!')        
+          this.$router.push("/home");
+      }        
       }else{
         Swal.fire('Error al guardar!')
       }      
 
       } catch (error) {
+        console.log(error);
+      }
+    },
+    getUser: async function(){
+      try{  
+        const response = await JSON.parse(auth.getUserLogged());                                        
+        this.profile = response;                          
+      }catch(error){
         console.log(error);
       }
     }

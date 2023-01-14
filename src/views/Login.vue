@@ -52,6 +52,7 @@ export default {
           id_direction_user:data.id_direction_user
         };
 
+        
         auth.setUserLogged(user);
 
         this.$router.push("/home");

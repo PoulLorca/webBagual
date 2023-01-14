@@ -9,8 +9,11 @@
     <h2>Email: <span>{{ profile.email_user }} </span></h2>    
 
     <div class="directionText">
-    <h2 v-if="direction">Mi direccion: <span>{{ direction.detail_direction }}</span></h2>
-    <h2 v-else> <router-link to="/address">Agregar dirección</router-link></h2>
+    <div v-if="direction">
+        <h2 >Mi direccion: <span>{{ direction.detail_direction }}</span></h2>
+        <router-link to="/newaddress">Cambiar dirección</router-link>
+    </div>  
+    <h2 v-else> <router-link to="/newaddress">Agregar dirección</router-link></h2>
     </div>
 </div>
 
@@ -45,12 +48,12 @@ export default {
     },
     getDirection: async function(){
         try{
-            const response = await addresssrvice.getDirection(this.profile.id_rol_user);
+            const response = await addresssrvice.getDirection(this.profile.id_direction_user);
             const data = response.data.results[0];
 
-            this.direction = data;
+            this.direction = data;            
         }catch(error){
-            console.log(error);
+            //console.log(error);
         }                
     },
     shops: async function(id){

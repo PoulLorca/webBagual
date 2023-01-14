@@ -50,9 +50,9 @@ export default {
   methods: {
     async getData() {
       try {
-        let id = this.$route.params.id;
+        let id = this.$route.params.id;        
         const response = await shopsservice.getShops(id);                
-        const data=response.data
+        const data=response.data                        
         
         this.info=data.results;                
       } catch (error) {

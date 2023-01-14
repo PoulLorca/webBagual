@@ -10,7 +10,7 @@
         <h2><p>{{ info.title_product }}</p></h2>
         <p>{{ info.description_product}}</p>
 
-        <h3>Tu pedido será enviado a {{ direction }}</h3>
+        <h3>Tu pedido será enviado a {{ direction.detail_direction }}</h3>
         <button class="snipcart-add-item" :data-item-name="info.title_product" :data-item-id="info.id_product"  @click="buy()" :data-item-price="info.price_product">Buy it for {{ info.price_product }}$</button>
         
         <br>
@@ -44,11 +44,11 @@ export default {
             this.profile = JSON.parse(response);            
         },
         getDirection: async function(){
-        try{
-            const response = await addresssrvice.getDirection(this.profile.id_rol_user);
+        try{            
+            const response = await addresssrvice.getDirection(this.profile.id_direction_user);
             const data = response.data.results[0];
 
-            this.direction = data.detail_direction;                   
+            this.direction = data;                   
         }catch(error){
             console.log(error);
         }                
@@ -64,7 +64,7 @@ export default {
     },
     buy: async function(){        
     try {        
-      const response = await shopsservice.register(this.profile.id_user, this.info.id_product, 1, this.direction, 1);            
+      const response = await shopsservice.register(this.profile.id_user, this.info.id_product, 1, this.direction.id_direction, 1);            
       const data = response.data.status;
 
       if(data == 200){

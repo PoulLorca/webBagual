@@ -36,7 +36,7 @@ export default {
       };
 
     return axios(config)    
-  },
+  },  
   login(email_user,password_user){
     var data = qs.stringify({
       'email_user': `${email_user}`,
@@ -53,5 +53,27 @@ export default {
     };    
     
     return axios(config);    
+  },
+  updateDefaultDirection(id_direction_user,id_user ,user_token){    
+    let userToken = user_token                
+      
+      
+        const data = qs.stringify(
+            { id_direction_user: `${id_direction_user}`,                             
+         });        
+      
+        var config = {
+            method: 'put',
+            url: `${environment.API_URL}/users?id=${id_user}&nameId=id_user&token=${userToken}`,
+            
+            headers: {      
+              'Access-Control-Allow-Origin': '*',             
+              'apikey': `${environment.API_KEY}`, 
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            data : data
+          };    
+      
+          return axios(config)
   }
 };

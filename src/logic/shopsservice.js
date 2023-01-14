@@ -9,12 +9,11 @@ export default {
     getShops(id){        
         var config = {
           method: 'get',
-          url: `${environment.API_URL}/relations?rel=shops,products,directions,states&type=shop,product,direction,state&select=*&linkTo=id_user_shop&equalTo=${id}`,          
+          url: `${environment.API_URL}/relations?rel=shops,products,directions,states&type=shop,product,direction,state&select=*&linkTo=id_user_shop&search=${id}`,                    
           headers: {     
             'apikey': `${environment.API_KEY}`
           }
-        };
-        
+        };              
         return axios(config)
         
     },
@@ -29,7 +28,7 @@ export default {
       
       return axios(config)      
   },
-  register(id_user_shop, id_product_shop, ammount_shop, id_direction_shop, id_state_shop) {
+  register(id_user_shop, id_product_shop, ammount_shop, id_direction_shop, id_state_shop) {       
 
     let user = JSON.parse(auth.getUserLogged());  
     let userToken = user.token_user  
